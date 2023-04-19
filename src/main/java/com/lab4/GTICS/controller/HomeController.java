@@ -44,8 +44,4 @@ public class HomeController {
             return "redirect:/";
         }
     }
-    @PostMapping("/comprar")
-    public String comprar(RequestParam){
-        a
-    }
 }
