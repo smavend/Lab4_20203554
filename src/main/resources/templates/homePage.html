@@ -51,7 +51,7 @@
 
       <div class=" col-3 mt-5">
         <button type="button ml-3" class="btn btn-primary">Buscar</button>
-        <button type="button mr-3" class="btn btn-dark">Cerrar Sesión</button>
+        <a th:href="@{/}" type="button mr-3" class="btn btn-dark">Cerrar Sesión</a>
       </div>
 
     </div>
@@ -61,8 +61,9 @@
       <div class="col-2"></div>
     </div>
 
-
-
+    <div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}">
+      A simple success alert—check it out!
+    </div>
     <div class="card text-center mt-2 border-white">
       <div class="card-body">
         <div class="row">
@@ -73,22 +74,24 @@
       </div>
     </div>
 
+
     <div class="row">
       <div class="col-sm-6 mt-2 ml-2 mb-4" th:each="vuelo: ${listaVuelos}">
-        <div class="card text-center border-white">
-          <div class="card-body" >
-            <h5 class="card-title mt-3">
-              <th:block th:utext="${vuelo.origen + ' - '+ vuelo.destino}"/>
-              <span class="text-danger"><b><th:block th:utext="|(${vuelo.precio})|"/></b></span></h5>
-            <p class="text-success"><b><th:block th:utext="${vuelo.aerolinea.nombre}+' - '+${vuelo.aerolinea.codigo}"/></b> </p>
-            <p th:text="${vuelo.descripcion}">Definitivamente el turismo en Bogotá en más que Monserrate y la Candelaria, hay muchas excursiones por
-              senderos
-              mágicos que puedes realizar. Estas actividades también se conocen como: senderismo, excursionismo,
-              caminata, montañismo,
-              hiking o trekking.</p>
-            <button type="button" class="btn btn-success btn-lg btn-block" >Comprar</button>
+          <div class="card text-center border-white">
+            <div class="card-body" >
+              <h5 class="card-title mt-3">
+                <th:block th:utext="${vuelo.origen + ' - '+ vuelo.destino}"/>
+                <span class="text-danger"><b><th:block th:utext="|($${vuelo.precio})|"/></b></span></h5>
+              <p class="text-success"><b><th:block th:utext="${vuelo.aerolinea.nombre}+' - '+${vuelo.aerolinea.codigo}"/></b> </p>
+              <p th:text="${vuelo.descripcion}">Definitivamente el turismo en Bogotá en más que Monserrate y la Candelaria, hay muchas excursiones por
+                senderos
+                mágicos que puedes realizar. Estas actividades también se conocen como: senderismo, excursionismo,
+                caminata, montañismo,
+                hiking o trekking.</p>
+              <a th:href="@{'/reservar/'+${vuelo.idVuelo}+'/'+${user.idUser}}" type="button" class="btn btn-success btn-lg btn-block">Comprar</a>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
 
